@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>IRIS MODEL</title>
+    <meta charset="utf-8" />
+</head>
+ 
+<body>
+
+    <header>
+       <h1><div style='color:mediumvioletred'>Pridictions Witht Iris Model</div></h1>
+       <p><div style='color:mediumvioletred'>This web page allows you to make 
+        predictions using a trained Logistic Regression model with the scikit-learn 
+        load_iris() dataset.</div></p><br>
+    
+        <!-- api/v0/get_predict -->
+    <form id='myForm' action="api/v0/get_predict" method="POST">
+        <table>
+            <tr>
+                <td><label for="sepal_len">Sepal Length (cm):</label></td>
+                <td><label for="sepal_wid">Sepal Width (cm):</label></td>
+                <td><label for="petal_len">Petal Length (cm):</label></td>
+                <td><label for="petal_wid">Petal Width (cm):</label></td>
+            </tr>
+            <tr>
+                <td><input type="number" step="0.01" id="sepal_len" name="sepal_len"></td>
+                <td><input type="number" step="0.01" id="sepal_wid" name="sepal_wid"></td>
+                <td><input type="number" step="0.01" id="petal_len" name="petal_len"></td>
+                <td><input type="number" step="0.01" id="petal_wid" name="petal_wid"></td>
+            </tr>
+            
+        </table><br>
+        <input type="submit"  id="submitButton" value="Send it">
+    </form>
+
+    <p id="error"></p>
+    <script>
+    document.getElementById("myForm").onsubmit = function() {
+    var sLength = document.getElementById("sepal_len").value;
+    var sWidth = document.getElementById("sepal_wid").value;
+    var pLength = document.getElementById("petal_len").value;
+    var pWidth = document.getElementById("petal_wid").value;
+
+    if (sLength === "" || sWidth === "" || pLength === "" || pWidth === "") {
+        document.getElementById("error").innerHTML = "Please fill all the fields.";
+        return false;
+    } else if (isNaN(sLength) || isNaN(sWidth) || isNaN(pLength) || isNaN(pWidth)) {
+        document.getElementById("error").innerHTML = "Please enter only numbers.";
+        return false;
+    } else {
+        document.getElementById("error").innerHTML = "";
+        return true;
+    }
+    };
+    </script>
+    
+</body>
+</html>
